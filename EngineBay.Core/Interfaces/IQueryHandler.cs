@@ -1,6 +1,6 @@
 namespace EngineBay.Core
 {
-    internal interface IQueryHandler<TQueryParameters, TOutputDto>
+    public interface IQueryHandler<TQueryParameters, TOutputDto>
     {
     }
 }

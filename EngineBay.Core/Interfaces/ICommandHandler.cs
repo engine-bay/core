@@ -1,6 +1,6 @@
 namespace EngineBay.Core
 {
-    internal interface ICommandHandler<TInputParameters, TOutputDto>
+    public interface ICommandHandler<TInputParameters, TOutputDto>
     {
     }
 }
