@@ -3,7 +3,7 @@ namespace EngineBay.Core
     using System;
     using Microsoft.EntityFrameworkCore;
 
-    public abstract class BaseModel
+    public abstract class BaseModel : IBaseModel
     {
         public Guid Id { get; set; }
 
@@ -11,7 +11,12 @@ namespace EngineBay.Core
 
         public DateTime LastUpdatedAt { get; set; }
 
-        public static void Annotations(ModelBuilder modelBuilder)
+        public void CreateDataAnnotations(ModelBuilder modelBuilder)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void CreateBaseDataAnnotations(ModelBuilder modelBuilder)
         {
             if (modelBuilder is null)
             {
