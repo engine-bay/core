@@ -11,12 +11,12 @@ namespace EngineBay.Core
 
         public DateTime LastUpdatedAt { get; set; }
 
-        public void CreateDataAnnotations(ModelBuilder modelBuilder)
+        public static void CreateDataAnnotations(ModelBuilder modelBuilder)
         {
             throw new NotImplementedException();
         }
 
-        protected void CreateBaseDataAnnotations(ModelBuilder modelBuilder)
+        protected static void CreateBaseDataAnnotations(ModelBuilder modelBuilder)
         {
             if (modelBuilder is null)
             {
