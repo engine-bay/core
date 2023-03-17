@@ -4,6 +4,9 @@ namespace EngineBay.Core
 
     public interface IBaseModel
     {
-        public void CreateDataAnnotations(ModelBuilder modelBuilder);
+        public static void CreateDataAnnotations(ModelBuilder modelBuilder)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
