@@ -15,19 +15,5 @@ namespace EngineBay.Core
         {
             throw new NotImplementedException();
         }
-
-        protected static void CreateBaseDataAnnotations(ModelBuilder modelBuilder)
-        {
-            if (modelBuilder is null)
-            {
-                throw new ArgumentNullException(nameof(modelBuilder));
-            }
-
-            modelBuilder.Entity<BaseModel>().HasKey(x => x.Id);
-
-            modelBuilder.Entity<BaseModel>().Property(x => x.CreatedAt).IsRequired();
-
-            modelBuilder.Entity<BaseModel>().Property(x => x.LastUpdatedAt).IsRequired();
-        }
     }
 }
