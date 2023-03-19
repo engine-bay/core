@@ -1,4 +1,4 @@
-name: Auto release
+name: Auto Release
 on:
   push:
     branches:
@@ -22,5 +22,5 @@ jobs:
       env:
         # GITHUB_TOKEN: ${{ secrets.AUTO_RELEASE_GITHUB_TOKEN }}
         WITH_V: false
-        DRY_RUN: true
+        # DRY_RUN: true
         DEFAULT_BUMP: none
