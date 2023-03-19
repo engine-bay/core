@@ -1,4 +1,4 @@
-name: Bump version
+name: Auto release
 on:
   push:
     branches:
