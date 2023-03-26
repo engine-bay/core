@@ -5,5 +5,7 @@ namespace EngineBay.Core
         IServiceCollection RegisterModule(IServiceCollection services, IConfiguration configuration);
 
         IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpoints);
+
+        WebApplication AddMiddleware(WebApplication app);
     }
 }
