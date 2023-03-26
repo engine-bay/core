@@ -2,6 +2,14 @@ namespace EngineBay.Core
 {
     public class PaginationParameters
     {
+        public PaginationParameters(int? skip, int? limit, string? sortBy, SortOrderType? sortOrder)
+        {
+            this.Skip = skip.GetValueOrDefault(0);
+            this.Limit = limit.GetValueOrDefault(10);
+            this.SortBy = string.IsNullOrEmpty(sortBy) ? "LastUpdatedAt" : sortBy;
+            this.SortOrder = sortOrder.GetValueOrDefault(SortOrderType.None);
+        }
+
         public PaginationParameters()
         {
             this.Skip = 0;
