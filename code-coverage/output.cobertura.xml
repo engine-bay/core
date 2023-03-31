@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<coverage line-rate="0" branch-rate="0" complexity="87" version="1.9" timestamp="1680281369" lines-valid="197" branches-valid="50">
+<coverage line-rate="0" branch-rate="0" complexity="87" version="1.9" timestamp="1680283077" lines-valid="197" branches-valid="50">
   <packages>
     <package line-rate="0" branch-rate="1" complexity="3" name="EngineBay.SheetFunctions.Tests">
       <classes>
