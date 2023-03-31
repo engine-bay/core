@@ -12,7 +12,6 @@ secrets/**/*
 
 
 # Code coverage
-code-coverage/**/*
 !code-coverage/Summary.json
 !code-coverage/Summary.md
 
