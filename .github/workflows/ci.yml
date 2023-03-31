@@ -30,9 +30,11 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
-    - uses: actions/setup-node@master
-      with:
-        node-version: '12'
+    # - uses: actions/setup-node@master
+    #   with:
+    #     node-version: '12'
+    - run: dotnet tool install -g dotnet-reportgenerator-globaltool
+    - run: dotnet tool install dotnet-coverage
     - uses: paambaati/codeclimate-action@v3.2.0
       env:
         CC_TEST_REPORTER_ID: 8d3194caa923bf994daeb58a9c3d333d53a7ccfb1545cb3ab98ebb953fd341f1
