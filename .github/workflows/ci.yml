@@ -39,7 +39,7 @@ jobs:
       env:
         CC_TEST_REPORTER_ID: 8d3194caa923bf994daeb58a9c3d333d53a7ccfb1545cb3ab98ebb953fd341f1
       with:
-        coverageCommand: dotnet coverage collect dotnet test --output ./code-coverage/output --output-format lcov
+        coverageCommand: dotnet coverage collect dotnet test --output ./code-coverage/output --output-format cobertura
   analyze:
     needs: [ build ]
     name: Analyze
