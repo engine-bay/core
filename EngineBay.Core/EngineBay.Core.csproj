@@ -23,7 +23,7 @@
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <PublishTrimmed>true</PublishTrimmed>
+    <IsTrimmable>true</IsTrimmable>
   </PropertyGroup>
 
   <ItemGroup>
