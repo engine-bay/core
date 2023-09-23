@@ -11,7 +11,7 @@ namespace EngineBay.Core
             this.FilterPredicate = filterPredicate;
         }
 
-        public FilteredPaginationParameters(PaginationParameters paginationParameters, FilterParameters filterParameters)
+        public FilteredPaginationParameters(PaginationParameters paginationParameters, FilterParameters? filterParameters)
             : base(paginationParameters?.Skip, paginationParameters?.Limit, paginationParameters?.SortBy, paginationParameters?.SortOrder)
         {
             if (filterParameters is null)
@@ -23,10 +23,11 @@ namespace EngineBay.Core
             {
                 this.FilterPredicate = x => filterParameters.Ids.Contains(x.Id);
             }
-            else
-            {
-                this.FilterPredicate = item => true;
-            }
+        }
+
+        public FilteredPaginationParameters(PaginationParameters paginationParameters)
+            : base(paginationParameters?.Skip, paginationParameters?.Limit, paginationParameters?.SortBy, paginationParameters?.SortOrder)
+        {
         }
 
         public FilteredPaginationParameters()
