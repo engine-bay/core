@@ -8,6 +8,23 @@ namespace EngineBay.Core
             this.Search = search;
         }
 
+        public SearchParameters(SearchParameters searchParameters)
+            : base(searchParameters?.Skip, searchParameters?.Limit, searchParameters?.SortBy, searchParameters?.SortOrder)
+        {
+            if (searchParameters is null)
+            {
+                throw new ArgumentNullException(nameof(searchParameters));
+            }
+
+            this.Search = searchParameters.Search;
+        }
+
+        public SearchParameters(string? search, PaginationParameters paginationParameters)
+            : base(paginationParameters?.Skip, paginationParameters?.Limit, paginationParameters?.SortBy, paginationParameters?.SortOrder)
+        {
+            this.Search = search;
+        }
+
         public SearchParameters()
             : base()
         {
