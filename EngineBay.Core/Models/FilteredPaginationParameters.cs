@@ -19,7 +19,7 @@ namespace EngineBay.Core
                 throw new ArgumentNullException(nameof(filterParameters));
             }
 
-            if (filterParameters.Ids is not null)
+            if (filterParameters.Ids is not null && filterParameters.Ids.Any())
             {
                 this.FilterPredicate = x => filterParameters.Ids.Contains(x.Id);
             }
