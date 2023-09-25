@@ -2,7 +2,6 @@ namespace EngineBay.Core
 {
     using System;
     using System.Linq.Expressions;
-    using Microsoft.EntityFrameworkCore;
 
     public abstract class PaginatedQuery<TBaseModel>
     {
@@ -26,14 +25,15 @@ namespace EngineBay.Core
             {
                 var sortOrder = paginationParameters.SortOrder;
 
-                if (sortOrder == SortOrderType.Ascending)
+                switch (sortOrder)
                 {
-                    sortedQuery = query.OrderByDescending(sortByPredicate);
-                }
-
-                if (sortOrder == SortOrderType.Descending)
-                {
-                    sortedQuery = query.OrderBy(sortByPredicate);
+                    case SortOrderType.Ascending:
+                        sortedQuery = query.OrderBy(sortByPredicate);
+                        break;
+                    case SortOrderType.Descending:
+                    default:
+                        sortedQuery = query.OrderByDescending(sortByPredicate);
+                        break;
                 }
             }
 
