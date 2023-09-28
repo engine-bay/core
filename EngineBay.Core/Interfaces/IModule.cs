@@ -12,10 +12,6 @@ namespace EngineBay.Core
 
         WebApplication AddMiddleware(WebApplication app);
 
-        IEnumerable<IEnumerable<object>> SeedDatabase(string seedDataPath, IDataProtectionProvider dataProtectorProvider);
-
-        void SeedDatabaseUsingCommand(string seedDataPath, IServiceProvider serviceProvider);
-
-        IEnumerable<string> SeedSqlDatabase(string seedDataPath, IDataProtectionProvider dataProtectorProvider);
+        void SeedDatabase(string seedDataPath, IServiceProvider serviceProvider);
     }
 }

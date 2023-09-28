@@ -13,37 +13,27 @@ namespace EngineBay.Core
     {
         public virtual WebApplication AddMiddleware(WebApplication app)
         {
-            throw new NotImplementedException();
+            return app;
         }
 
         public virtual RouteGroupBuilder MapEndpoints(RouteGroupBuilder endpoints)
         {
-            throw new NotImplementedException();
+            return endpoints;
         }
 
         public virtual IServiceCollection RegisterModule(IServiceCollection services, IConfiguration configuration)
         {
-            throw new NotImplementedException();
+            return services;
         }
 
         public virtual IServiceCollection RegisterPolicies(IServiceCollection services)
         {
-            throw new NotImplementedException();
+            return services;
         }
 
-        public virtual IEnumerable<IEnumerable<object>> SeedDatabase(string seedDataPath, IDataProtectionProvider dataProtectorProvider)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual void SeedDatabaseUsingCommand(string seedDataPath, IServiceProvider serviceProvider)
+        public virtual void SeedDatabase(string seedDataPath, IServiceProvider serviceProvider)
         {
             return;
-        }
-
-        public virtual IEnumerable<string> SeedSqlDatabase(string seedDataPath, IDataProtectionProvider dataProtectorProvider)
-        {
-            return new List<string>();
         }
 
         protected void LoadSeedData<TDto, TEntity, TCommandHandler>(string seedDataPath, string glob, IServiceProvider serviceProvider)
