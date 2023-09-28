@@ -3,7 +3,6 @@ namespace EngineBay.Core
     using System.Collections.Generic;
     using System.Security.Claims;
     using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.DataProtection;
     using Microsoft.AspNetCore.Routing;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -44,6 +43,7 @@ namespace EngineBay.Core
             var claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.NameIdentifier, Guid.NewGuid().ToString()),
+                new Claim("name", "System"),
             };
 
             var identity = new ClaimsIdentity(claims, "SeedAuthType");
