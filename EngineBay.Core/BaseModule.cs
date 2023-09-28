@@ -36,9 +36,9 @@ namespace EngineBay.Core
             return;
         }
 
-        protected void LoadSeedData<TDto, TEntity, TCommandHandler>(string seedDataPath, string glob, IServiceProvider serviceProvider)
-          where TDto : class
-          where TCommandHandler : ICommandHandler<TDto, TEntity>
+        protected void LoadSeedData<TInputParameters, TOutputDto, TCommandHandler>(string seedDataPath, string glob, IServiceProvider serviceProvider)
+          where TInputParameters : class
+          where TCommandHandler : ICommandHandler<TInputParameters, TOutputDto>
         {
             var commandHandler = serviceProvider.GetRequiredService<TCommandHandler>();
             var claims = new List<Claim>()
@@ -51,7 +51,7 @@ namespace EngineBay.Core
 
             foreach (string filePath in Directory.EnumerateFiles(seedDataPath, glob, SearchOption.AllDirectories))
             {
-                List<TDto>? data = JsonConvert.DeserializeObject<List<TDto>>(File.ReadAllText(filePath));
+                List<TInputParameters>? data = JsonConvert.DeserializeObject<List<TInputParameters>>(File.ReadAllText(filePath));
                 if (data is not null)
                 {
                     foreach (var entity in data)
