@@ -6,4 +6,9 @@ namespace EngineBay.Core
     {
         public Task<TOutputDto> Handle(TInputParameters inputParameters, ClaimsPrincipal user, CancellationToken cancellation);
     }
+
+    public interface ICommandHandler<in TInputParameters>
+    {
+        public Task Handle(TInputParameters inputParameters, ClaimsPrincipal user, CancellationToken cancellationToken);
+    }
 }
