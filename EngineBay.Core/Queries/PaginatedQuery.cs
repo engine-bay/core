@@ -31,8 +31,9 @@ namespace EngineBay.Core
                         sortedQuery = query.OrderBy(sortByPredicate);
                         break;
                     case SortOrderType.Descending:
-                    default:
                         sortedQuery = query.OrderByDescending(sortByPredicate);
+                        break;
+                    default:
                         break;
                 }
             }
