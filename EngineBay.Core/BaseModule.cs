@@ -49,14 +49,17 @@ namespace EngineBay.Core
             var identity = new ClaimsIdentity(claims, "SeedAuthType");
             var claimsPrincipal = new ClaimsPrincipal(identity);
 
-            foreach (string filePath in Directory.EnumerateFiles(seedDataPath, glob, SearchOption.AllDirectories))
+            if (Directory.Exists(seedDataPath))
             {
-                List<TInputParameters>? data = JsonConvert.DeserializeObject<List<TInputParameters>>(File.ReadAllText(filePath));
-                if (data is not null)
+                foreach (string filePath in Directory.EnumerateFiles(seedDataPath, glob, SearchOption.AllDirectories))
                 {
-                    foreach (var entity in data)
+                    List<TInputParameters>? data = JsonConvert.DeserializeObject<List<TInputParameters>>(File.ReadAllText(filePath));
+                    if (data is not null)
                     {
-                        _ = commandHandler.Handle(entity, claimsPrincipal, CancellationToken.None).Result;
+                        foreach (var entity in data)
+                        {
+                            _ = commandHandler.Handle(entity, claimsPrincipal, CancellationToken.None).Result;
+                        }
                     }
                 }
             }
