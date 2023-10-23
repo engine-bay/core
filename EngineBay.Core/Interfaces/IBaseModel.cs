@@ -4,9 +4,12 @@ namespace EngineBay.Core
 
     public interface IBaseModel
     {
-        public static void CreateDataAnnotations(ModelBuilder modelBuilder)
-        {
-            throw new NotImplementedException();
-        }
+        public Guid Id { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public DateTime LastUpdatedAt { get; set; }
+
+        public static abstract void CreateDataAnnotations(ModelBuilder modelBuilder);
     }
 }
