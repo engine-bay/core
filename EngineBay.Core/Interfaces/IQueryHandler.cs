@@ -4,12 +4,12 @@ namespace EngineBay.Core
 
     public interface IQueryHandler<TQueryParameters, TOutputDto>
     {
-        public Task<TOutputDto> Handle(TQueryParameters queryParameters, CancellationToken cancellation);
+        public Task<TOutputDto> Handle(TQueryParameters query, CancellationToken cancellation);
     }
 
     public interface IQueryHandler<TQueryParameters, TClaimsPrincipal, TOutputDto>
     {
-        public Task<TOutputDto> Handle(TQueryParameters queryParameters, ClaimsPrincipal user, CancellationToken cancellation);
+        public Task<TOutputDto> Handle(TQueryParameters query, ClaimsPrincipal user, CancellationToken cancellation);
     }
 
     public interface IQueryHandler<TOutputDto>
