@@ -1,7 +1,6 @@
 namespace EngineBay.Core
 {
     using System.Collections.Generic;
-    using System.Security.Claims;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Routing;
     using Microsoft.Extensions.Configuration;
@@ -40,14 +39,6 @@ namespace EngineBay.Core
           where TCommandHandler : ICommandHandler<TInputParameters, TOutputDto>
         {
             var commandHandler = serviceProvider.GetRequiredService<TCommandHandler>();
-            var claims = new List<Claim>()
-            {
-                new Claim(ClaimTypes.NameIdentifier, Guid.NewGuid().ToString()),
-                new Claim("name", "System"),
-            };
-
-            var identity = new ClaimsIdentity(claims, "SeedAuthType");
-            var claimsPrincipal = new ClaimsPrincipal(identity);
 
             if (Directory.Exists(seedDataPath))
             {
@@ -58,7 +49,7 @@ namespace EngineBay.Core
                     {
                         foreach (var entity in data)
                         {
-                            _ = commandHandler.Handle(entity, claimsPrincipal, CancellationToken.None).Result;
+                            _ = commandHandler.Handle(entity, CancellationToken.None).Result;
                         }
                     }
                 }
