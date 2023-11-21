@@ -11,10 +11,7 @@ namespace EngineBay.Core
         public SearchParameters(SearchParameters searchParameters)
             : base(searchParameters?.Skip, searchParameters?.Limit, searchParameters?.SortBy, searchParameters?.SortOrder)
         {
-            if (searchParameters is null)
-            {
-                throw new ArgumentNullException(nameof(searchParameters));
-            }
+            ArgumentNullException.ThrowIfNull(searchParameters);
 
             this.Search = searchParameters.Search;
         }

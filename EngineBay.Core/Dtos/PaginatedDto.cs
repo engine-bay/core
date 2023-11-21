@@ -4,10 +4,7 @@ namespace EngineBay.Core
     {
         public PaginatedDto(int total, int skip, int limit, IEnumerable<T> data)
         {
-            if (data is null)
-            {
-                throw new ArgumentNullException(nameof(data));
-            }
+            ArgumentNullException.ThrowIfNull(data);
 
             this.Total = total;
             this.Skip = skip;
