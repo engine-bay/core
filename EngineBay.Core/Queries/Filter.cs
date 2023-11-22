@@ -7,10 +7,7 @@
     {
         public Filter(string filterString)
         {
-            if (filterString is null)
-            {
-                throw new ArgumentNullException(nameof(filterString));
-            }
+            ArgumentNullException.ThrowIfNull(filterString);
 
             var components = filterString.Split(':');
             this.Field = components[0];
@@ -41,20 +38,11 @@
 
         public Expression<Func<TModel, bool>> CreateFilterPredicate<TModel>(ParameterExpression parameter, MemberExpression property, ConstantExpression constant)
         {
-            if (parameter is null)
-            {
-                throw new ArgumentNullException(nameof(parameter));
-            }
+            ArgumentNullException.ThrowIfNull(parameter);
 
-            if (property is null)
-            {
-                throw new ArgumentNullException(nameof(property));
-            }
+            ArgumentNullException.ThrowIfNull(property);
 
-            if (constant is null)
-            {
-                throw new ArgumentNullException(nameof(constant));
-            }
+            ArgumentNullException.ThrowIfNull(constant);
 
             if (Nullable.GetUnderlyingType(property.Type) != null && Nullable.GetUnderlyingType(constant.Type) == null)
             {
