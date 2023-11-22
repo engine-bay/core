@@ -7,15 +7,8 @@ namespace EngineBay.Core
     {
         protected IQueryable<TBaseModel> Sort(IQueryable<TBaseModel> query, Expression<Func<TBaseModel, string?>> sortByPredicate, PaginationParameters paginationParameters)
         {
-            if (query is null)
-            {
-                throw new ArgumentNullException(nameof(query));
-            }
-
-            if (paginationParameters is null)
-            {
-                throw new ArgumentNullException(nameof(paginationParameters));
-            }
+            ArgumentNullException.ThrowIfNull(query);
+            ArgumentNullException.ThrowIfNull(paginationParameters);
 
             var sortBy = paginationParameters.SortBy;
 
@@ -43,15 +36,8 @@ namespace EngineBay.Core
 
         protected IQueryable<TBaseModel> Paginate(IQueryable<TBaseModel> query, PaginationParameters paginationParameters)
         {
-            if (query is null)
-            {
-                throw new ArgumentNullException(nameof(query));
-            }
-
-            if (paginationParameters is null)
-            {
-                throw new ArgumentNullException(nameof(paginationParameters));
-            }
+            ArgumentNullException.ThrowIfNull(query);
+            ArgumentNullException.ThrowIfNull(paginationParameters);
 
             var limit = paginationParameters.Limit;
             var skip = limit > 0 ? paginationParameters.Skip : 0;

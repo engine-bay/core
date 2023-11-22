@@ -4,10 +4,7 @@ namespace EngineBay.Core
     {
         public BaseDto(BaseModel baseModel)
         {
-            if (baseModel is null)
-            {
-                throw new ArgumentNullException(nameof(baseModel));
-            }
+            ArgumentNullException.ThrowIfNull(baseModel);
 
             this.Id = baseModel.Id;
             this.CreatedAt = baseModel.CreatedAt;
