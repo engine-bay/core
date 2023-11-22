@@ -47,10 +47,7 @@ namespace EngineBay.Core
 
         private void BuildFilterPredicate(FilterParameters? filterParameters)
         {
-            if (filterParameters is null)
-            {
-                throw new ArgumentNullException(nameof(filterParameters));
-            }
+            ArgumentNullException.ThrowIfNull(filterParameters);
 
             if (filterParameters.Ids is not null && filterParameters.Ids.Any())
             {
