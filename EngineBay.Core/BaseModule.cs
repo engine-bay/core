@@ -34,9 +34,12 @@ namespace EngineBay.Core
             return;
         }
 
-        protected void LoadSeedData<TInputParameters, TOutputDto, TCommandHandler>(string seedDataPath, string glob, IServiceProvider serviceProvider)
-          where TInputParameters : class
-          where TCommandHandler : ICommandHandler<TInputParameters, TOutputDto>
+        protected void LoadSeedData<TInputParameters, TOutputDto, TCommandHandler>(
+            string seedDataPath,
+            string glob,
+            IServiceProvider serviceProvider)
+            where TInputParameters : class
+            where TCommandHandler : ICommandHandler<TInputParameters, TOutputDto>
         {
             var commandHandler = serviceProvider.GetRequiredService<TCommandHandler>();
 
@@ -44,7 +47,8 @@ namespace EngineBay.Core
             {
                 foreach (string filePath in Directory.EnumerateFiles(seedDataPath, glob, SearchOption.AllDirectories))
                 {
-                    List<TInputParameters>? data = JsonConvert.DeserializeObject<List<TInputParameters>>(File.ReadAllText(filePath));
+                    List<TInputParameters>? data =
+                        JsonConvert.DeserializeObject<List<TInputParameters>>(File.ReadAllText(filePath));
                     if (data is not null)
                     {
                         foreach (var entity in data)
@@ -53,6 +57,22 @@ namespace EngineBay.Core
                         }
                     }
                 }
+            }
+        }
+
+        protected void LoadSeedData<TInputParameters, TOutputDto, TCommandHandler>(
+            TInputParameters[] seedData,
+            IServiceProvider serviceProvider)
+            where TInputParameters : class
+            where TCommandHandler : ICommandHandler<TInputParameters, TOutputDto>
+        {
+            ArgumentNullException.ThrowIfNull(seedData);
+
+            var commandHandler = serviceProvider.GetRequiredService<TCommandHandler>();
+
+            foreach (var entity in seedData)
+            {
+                _ = commandHandler.Handle(entity, CancellationToken.None).Result;
             }
         }
     }
