@@ -9,9 +9,4 @@ namespace EngineBay.Core
     {
         public Task<TOutputDto> Handle(CancellationToken cancellation);
     }
-
-    public interface IQueryHandlerSync<TOutputDto>
-    {
-        public TOutputDto Handle(CancellationToken cancellation);
-    }
 }
