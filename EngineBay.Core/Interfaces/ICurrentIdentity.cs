@@ -6,14 +6,6 @@
 
         public string Username { get; }
 
-        public Task<Guid> GetUserIdAsync(CancellationToken cancellation)
-        {
-            return Task.FromResult(this.UserId);
-        }
-
-        public Task<string> GetUsernameAsync(CancellationToken cancellation)
-        {
-            return Task.FromResult(this.Username);
-        }
+        public bool HasPermission(string permission);
     }
 }
