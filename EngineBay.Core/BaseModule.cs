@@ -7,7 +7,6 @@ namespace EngineBay.Core
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
 
     public abstract class BaseModule : IModule
     {
@@ -79,11 +78,11 @@ namespace EngineBay.Core
         }
 
         protected void LoadSeedData<TInputParameters, TModuleDbContext>(
-            string seedDataPath,
-            string glob,
-            IServiceProvider serviceProvider)
-            where TInputParameters : BaseModel
-            where TModuleDbContext : DbContext
+           string seedDataPath,
+           string glob,
+           IServiceProvider serviceProvider)
+           where TInputParameters : BaseModel
+           where TModuleDbContext : DbContext
         {
             var dbContext = serviceProvider.GetRequiredService<TModuleDbContext>();
 
@@ -98,68 +97,6 @@ namespace EngineBay.Core
                         dbContext.AddRange(data);
                         dbContext.SaveChanges();
                     }
-                }
-            }
-        }
-
-        protected void LoadSeedData<TInputParameters, TLinkedType, TModuleDbContext>(
-            string seedDataPath,
-            string glob,
-            IServiceProvider serviceProvider,
-            string linkedKey,
-            Func<IEnumerable<string>, IEnumerable<TLinkedType>> linkedDataFinder)
-            where TInputParameters : BaseModel
-            where TLinkedType : BaseModel
-            where TModuleDbContext : DbContext
-        {
-            ArgumentNullException.ThrowIfNull(linkedDataFinder);
-
-            var dbContext = serviceProvider.GetRequiredService<TModuleDbContext>();
-
-            // var linkedKey = typeof(TLinkedType).Name.Pluralize();
-            if (Directory.Exists(seedDataPath))
-            {
-                foreach (string filePath in Directory.EnumerateFiles(seedDataPath, glob, SearchOption.AllDirectories))
-                {
-                    var models = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(File.ReadAllText(filePath));
-
-                    if (models is not null)
-                    {
-                        foreach (Dictionary<string, object> model in models)
-                        {
-                            List<string>? values;
-
-                            if (model[linkedKey] is JArray)
-                            {
-                                values = JsonConvert.DeserializeObject<List<string>>(model[linkedKey].ToString() ?? string.Empty);
-                            }
-                            else
-                            {
-                                values = new List<string> { model[linkedKey].ToString() ?? string.Empty };
-                            }
-
-                            if (values != null)
-                            {
-                                List<TLinkedType> relatedValues = linkedDataFinder(values).ToList();
-
-                                // model.Remove(linkedKey);
-                                model[linkedKey] = relatedValues;
-                                var data = JsonConvert.DeserializeObject<TInputParameters>(JsonConvert.SerializeObject(model));
-
-                                if (data is not null)
-                                {
-                                    // var property = data.GetType().GetProperty(linkedKey);
-                                    // if (property != null)
-                                    // {
-                                    //    property.SetValue(data, relatedValues);
-                                    // }
-                                    dbContext.Add(data);
-                                }
-                            }
-                        }
-                    }
-
-                    dbContext.SaveChanges();
                 }
             }
         }
