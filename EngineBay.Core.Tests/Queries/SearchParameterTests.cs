@@ -59,5 +59,28 @@ namespace EngineBay.Core.Tests
             var paginationParameters = new SearchParameters(null, null, null, null, null);
             Assert.Equal("LastUpdatedAt", paginationParameters.SortBy);
         }
+
+        [Fact]
+        public void ConstructorSetsPropertiesFromSearchParameters()
+        {
+            var searchParameters = new SearchParameters("searchValue", null, null, null, null);
+            var sut = new SearchParameters(searchParameters);
+            Assert.Equal("searchValue", sut.Search);
+        }
+
+        [Fact]
+        public void ConstructorSetsPropertiesFromPaginationParameters()
+        {
+            var paginationParameters = new PaginationParameters(null, null, null, null);
+            var sut = new SearchParameters("searchValue", paginationParameters);
+            Assert.Equal("searchValue", sut.Search);
+        }
+
+        [Fact]
+        public void ConstructorSetsProperties()
+        {
+            var sut = new SearchParameters();
+            Assert.Null(sut.Search);
+        }
     }
 }

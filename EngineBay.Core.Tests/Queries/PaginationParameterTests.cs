@@ -53,10 +53,12 @@ namespace EngineBay.Core.Tests
             Assert.Equal(SortOrderType.None, paginationParameters.SortOrder);
         }
 
-        [Fact]
-        public void PartiallyConstructedPaginationParametersSortPropertyShouldBeLastModifiedAt()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        public void PartiallyConstructedPaginationParametersSortPropertyShouldBeLastModifiedAt(string? sortBy)
         {
-            var paginationParameters = new PaginationParameters(null, null, null, null);
+            var paginationParameters = new PaginationParameters(null, null, sortBy, null);
             Assert.Equal("LastUpdatedAt", paginationParameters.SortBy);
         }
     }
