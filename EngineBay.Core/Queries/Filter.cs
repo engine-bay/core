@@ -7,7 +7,7 @@
     {
         public Filter(string filterString)
         {
-            ArgumentNullException.ThrowIfNull(filterString);
+            ArgumentNullException.ThrowIfNullOrWhiteSpace(filterString);
 
             var components = filterString.Split(':');
             this.Field = components[0];
